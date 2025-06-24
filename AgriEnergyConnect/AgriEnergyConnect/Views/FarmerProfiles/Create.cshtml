@@ -1,0 +1,70 @@
+﻿@model AgriEnergyConnect.Models.FarmerProfile
+
+@{
+    ViewData["Title"] = "Create Farmer Profile";
+}
+
+<!-- Bootstrap responsive layout -->
+<!-- Reference: https://getbootstrap.com/docs/5.3/layout/grid/ -->
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <!-- Card UI for cleaner form design -->
+            <!-- Reference: https://getbootstrap.com/docs/5.3/components/card/ -->
+            <div class="card shadow border-0">
+                <div class="card-header bg-green text-white">
+                    <h4 class="mb-0">Add Farmer Profile</h4>
+                </div>
+                <div class="card-body">
+                    <!-- Begin form using Razor Tag Helpers -->
+                    <!-- Reference: https://learn.microsoft.com/en-us/aspnet/core/mvc/views/working-with-forms -->
+                    <form asp-action="Create">
+                        <!-- Validation summary for model-level errors -->
+                        <!-- Reference: https://learn.microsoft.com/en-us/aspnet/core/mvc/models/validation -->
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                        <!-- Full Name field -->
+                        <div class="mb-3">
+                            <label asp-for="FullName" class="form-label"></label>
+                            <input asp-for="FullName" class="form-control" placeholder="Enter full name" />
+                            <span asp-validation-for="FullName" class="text-danger"></span>
+                        </div>
+                        <!-- Contact Number field -->
+                        <div class="mb-3">
+                            <label asp-for="ContactNumber" class="form-label"></label>
+                            <input asp-for="ContactNumber" class="form-control" placeholder="Enter contact number" />
+                            <span asp-validation-for="ContactNumber" class="text-danger"></span>
+                        </div>
+                        <!-- Email field with input validation -->
+                        <!-- Reference: https://learn.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations.emailaddressattribute -->
+                        <div class="mb-3">
+                            <label asp-for="Email" class="form-label"></label>
+                            <input asp-for="Email" class="form-control" placeholder="Enter email address" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="UserId" class="form-label"></label>
+                            <input asp-for="UserId" class="form-control" placeholder="Assign User ID" />
+                            <span asp-validation-for="UserId" class="text-danger"></span>
+                        </div>
+                        <!-- Navigation and Submit Buttons -->
+                        <!-- Reference: https://getbootstrap.com/docs/5.3/components/buttons/ -->
+                        <div class="d-flex justify-content-between">
+                            <a asp-action="Index" class="btn btn-outline-secondary">Back to List</a>
+                            <button type="submit" class="btn btn-primary bg-green btn-green">Create</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        <!-- Renders client-side validation scripts -->
+        <!-- Reference: https://learn.microsoft.com/en-us/aspnet/core/mvc/views/partial -->
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
